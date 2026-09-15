@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catálogo botánico accesible y responsivo. Consulta y descarga fichas técnicas en PDF de plantas de interior y exterior.">
+  <title>Catálogo Botánico - Plantas de Interior y Exterior</title>
+  <link rel="stylesheet" href="estilosIA.css">
+</head>
+<body>
+  <!-- Enlace accesible de salto al contenido principal para navegación por teclado y lectores de pantalla -->
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+  <div class="site-wrapper">
+    <!-- Controles de estado puro CSS accesibles mediante botones de opción (radio) -->
+    <!-- Se ubican antes del contenido para máxima compatibilidad con selector :has y combinador de hermanos (~) -->
+    <input 
+      type="radio" 
+      name="categoria" 
+      id="cat-interior" 
+      value="interior" 
+      checked 
+      class="sr-only category-radio-input"
+    >
+    <input 
+      type="radio" 
+      name="categoria" 
+      id="cat-exterior" 
+      value="exterior" 
+      class="sr-only category-radio-input"
+    >
+
+    <!-- Encabezado y Barra de Navegación Principal del Sitio -->
+    <header class="site-header">
+      <div class="top-announcement-bar">
+        <div class="container top-bar-container">
+          <span class="announcement-text">Proyecto académico accesible • 100% Estático (HTML + CSS puro)</span>
+          <div class="quick-author-badge">
+            <span aria-hidden="true">👨‍💻</span> Mateo Andrés D'Altroy • Legajo: 24636/4
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra de navegación que integra selector botánico, enlaces de contacto y Sobre Mí -->
+      <nav class="main-navbar" aria-label="Navegación principal del sitio">
+        <div class="container navbar-container">
+          <!-- Identidad de Marca -->
+          <div class="brand">
+            <a href="#catalogo" class="brand-link" aria-label="Ir al inicio del catálogo botánico">
+              <span class="brand-icon" aria-hidden="true">🌱</span>
+              <span class="brand-text">
+                <span class="brand-title">Catálogo Botánico</span>
+                <span class="brand-tagline">Guía práctica con fichas técnicas descargables</span>
+              </span>
+            </a>
+          </div>
+
+          <!-- Selector de categorías Interior / Exterior dentro de la barra de navegación -->
+          <div class="nav-category-selector">
+            <fieldset class="filter-fieldset">
+              <legend class="filter-legend">
+                <span class="legend-heading">Categoría de plantas:</span>
+                <span class="legend-instruction sr-only">Usa las flechas del teclado o haz clic para alternar entre Interior y Exterior</span>
+              </legend>
+
+              <div class="category-button-group" role="radiogroup" aria-label="Filtrar catálogo por ambiente">
+                <!-- Opción: Interior -->
+                <label for="cat-interior" class="category-toggle-btn btn-interior" id="btn-interior-label">
+                  <span class="active-check-icon" aria-hidden="true">
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" focusable="false">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <span class="toggle-icon" aria-hidden="true">🪴</span>
+                  <span class="toggle-text">Interior</span>
+                  <span class="toggle-badge" aria-hidden="true">(3)</span>
+                  <span class="sr-only">(3 especies de interior)</span>
+                </label>
+
+                <!-- Opción: Exterior -->
+                <label for="cat-exterior" class="category-toggle-btn btn-exterior" id="btn-exterior-label">
+                  <span class="active-check-icon" aria-hidden="true">
+                    <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" focusable="false">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                  <span class="toggle-icon" aria-hidden="true">☀️</span>
+                  <span class="toggle-text">Exterior</span>
+                  <span class="toggle-badge" aria-hidden="true">(3)</span>
+                  <span class="sr-only">(3 especies de exterior)</span>
+                </label>
+              </div>
+            </fieldset>
+          </div>
+
+          <!-- Enlaces de la barra de navegación: Sobre Mí y Contacto -->
+          <div class="nav-menu-wrapper">
+            <ul class="nav-links-list">
+              <li>
+                <a href="#sobre-mi" class="nav-action-link link-about" title="Ver sección Sobre Mí: Mateo Andrés D'Altroy">
+                  <span class="nav-link-icon" aria-hidden="true">👤</span>
+                  <span class="nav-link-text">Sobre Mí</span>
+                </a>
+              </li>
+              <li>
+                <a href="#contacto" class="nav-action-link link-contact" title="Ver sección de Contacto y Legajo">
+                  <span class="nav-link-icon" aria-hidden="true">📬</span>
+                  <span class="nav-link-text">Contacto</span>
+                </a>
+              </li>
+            </ul>
+
+            <!-- Enlaces directos a información de contacto en la barra de navegación -->
+            <ul class="nav-direct-contacts">
+              <li>
+                <a 
+                  href="mailto:mateodaltroy@gmail.com" 
+                  class="contact-direct-pill" 
+                  title="Enviar correo electrónico a Mateo D'Altroy"
+                  aria-label="Correo electrónico: mateodaltroy@gmail.com"
+                >
+                  <span class="pill-icon" aria-hidden="true">✉️</span>
+                  <span class="pill-text">mateodaltroy@gmail.com</span>
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="tel:+5491145678901" 
+                  class="contact-direct-pill" 
+                  title="Llamar al teléfono argentino de Mateo D'Altroy"
+                  aria-label="Teléfono argentino: +54 9 11 4567-8901"
+                >
+                  <span class="pill-icon" aria-hidden="true">📞</span>
+                  <span class="pill-text">+54&nbsp;9&nbsp;11&nbsp;4567&#8209;8901</span>
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#contacto" 
+                  class="contact-direct-pill legajo-pill" 
+                  title="Ver información del legajo 24636/4"
+                  aria-label="Número de Legajo: 24636/4"
+                >
+                  <span class="pill-icon" aria-hidden="true">🎓</span>
+                  <span class="pill-text">Legajo: <strong>24636/4</strong></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main id="main-content" class="main-content" tabindex="-1">
+      <div class="container">
+
+        <!-- ==========================================
+             SECCIÓN "SOBRE MÍ"
+             ========================================== -->
+        <section id="sobre-mi" class="info-banner-section about-card-section" aria-labelledby="heading-sobre-mi">
+          <div class="about-card-inner">
+            <div class="about-card-badge">
+              <span class="badge-icon" aria-hidden="true">👤</span>
+              <span class="badge-label">Desarrollador del Proyecto</span>
+            </div>
+            <h2 id="heading-sobre-mi" class="about-card-title">Sobre Mí</h2>
+            <p class="about-card-paragraph">
+              Soy <strong>Mateo Andres D'Altroy</strong>, de DNI <strong>46.562.663</strong> y estoy haciendo esto como parte de mi curriculum en el proceso de aprobar la materia de <strong>Proyecto de Software</strong>.
+            </p>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN "CONTACTO"
+             ========================================== -->
+        <section id="contacto" class="info-banner-section contact-card-section" aria-labelledby="heading-contacto">
+          <div class="contact-card-inner">
+            <div class="about-card-badge contact-badge">
+              <span class="badge-icon" aria-hidden="true">📬</span>
+              <span class="badge-label">Canales de Comunicación</span>
+            </div>
+            <h2 id="heading-contacto" class="about-card-title">Información de Contacto</h2>
+            <p class="contact-intro">
+              Puedes ponerte en contacto conmigo o verificar mis datos académicos a través de los siguientes medios:
+            </p>
+
+            <div class="contact-items-grid">
+              <!-- Contacto: Email -->
+              <div class="contact-grid-item">
+                <span class="contact-item-icon" aria-hidden="true">✉️</span>
+                <div class="contact-item-details">
+                  <span class="contact-item-label">Correo Electrónico:</span>
+                  <a href="mailto:mateodaltroy@gmail.com" class="contact-item-link" aria-label="Enviar correo a mateodaltroy@gmail.com">
+                    mateodaltroy@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <!-- Contacto: Teléfono Argentino Falso -->
+              <div class="contact-grid-item">
+                <span class="contact-item-icon" aria-hidden="true">📞</span>
+                <div class="contact-item-details">
+                  <span class="contact-item-label">Teléfono (Argentina):</span>
+                  <a href="tel:+5491145678901" class="contact-item-link" aria-label="Llamar al teléfono +54 9 11 4567-8901">
+                    +54&nbsp;9&nbsp;11&nbsp;4567&#8209;8901
+                  </a>
+                </div>
+              </div>
+
+              <!-- Contacto: Legajo -->
+              <div class="contact-grid-item">
+                <span class="contact-item-icon" aria-hidden="true">🎓</span>
+                <div class="contact-item-details">
+                  <span class="contact-item-label">Número de Legajo:</span>
+                  <span class="contact-item-highlight">24636/4</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr class="section-separator" id="catalogo" aria-hidden="true">
+
+        <!-- ==========================================
+             CATEGORÍA: PLANTAS DE INTERIOR (3 plantas)
+             ========================================== -->
+        <section id="seccion-interior" class="plant-category-section section-interior" aria-labelledby="heading-interior">
+          <header class="section-intro">
+            <div class="section-intro-badge">
+              <span aria-hidden="true">🪴</span> Categoría activa: Interior
+            </div>
+            <h2 id="heading-interior" class="section-title">Plantas de Interior</h2>
+            <p class="section-desc">Especies seleccionadas por su adaptación a espacios cubiertos, iluminación natural indirecta y capacidad de purificación ambiental.</p>
+          </header>
+
+          <div class="cards-grid">
+            <!-- TARJETA 1: POTUS -->
+            <article class="plant-card" aria-labelledby="plant-name-potus">
+              <div class="card-image-wrapper">
+                <span class="card-category-tag tag-interior">Interior</span>
+                <picture>
+                  <source srcset="imagenes/potus.jpg" type="image/jpeg">
+                  <img 
+                    src="imagenes/potus.png" 
+                    alt="Planta de Potus cultivada en maceta con frondosas hojas verdes jaspeadas en forma de corazón y tallos colgantes." 
+                    class="card-img" 
+                    width="474" 
+                    height="472" 
+                    decoding="async"
+                  >
+                </picture>
+              </div>
+
+              <div class="card-body">
+                <div class="card-header-info">
+                  <h3 id="plant-name-potus" class="card-title">Potus</h3>
+                  <p class="card-scientific-name">Epipremnum aureum</p>
+                </div>
+
+                <p class="card-description">
+                  Planta colgante o trepadora muy resistente y longeva. Tolera diversos niveles de iluminación y es reconocida por sus propiedades purificadoras del aire.
+                </p>
+
+                <ul class="care-list" aria-label="Cuidados esenciales de Potus">
+                  <li class="care-item">
+                    <span class="care-icon" aria-hidden="true">☀️</span>
+                    <span class="care-text">Luz indirecta brillante</span>
+                  </li>
+                  <li class="care-item">
+                    <span class="care-icon" aria-hidden="true">💧</span>
+                    <span class="care-text">Riego cuando el sustrato seque</span>
+                  </li>
+                </ul>
+
+                <div class="card-actions">
+                  <a 
+                    href="info/potus.pdf" 
+                    download="potus.pdf" 
+                    class="btn-download" 
+                    aria-label="Descargar ficha técnica de Potus en archivo PDF (12 KB)"
+                  >
+                    <span class="download-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" focusable="false">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                      </svg>
+                    </span>
+                    <span class="download-label">Descargar Ficha Técnica</span>
+                    <span class="download-meta" aria-hidden="true">PDF (12 KB)</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- TARJETA 2: LENGUA DE SUEGRA -->
+            <article class="plant-card" aria-labelledby="plant-name-lengua">
+              <div class="card-image-wrapper">
+                <span class="card-category-tag tag-interior">Interior</span>
+                <picture>
+                  <source srcset="imagenes/lenguaDeSuegra.jpg" type="image/jpeg">
+                  <img 
+                    src="imagenes/lenguaDeSuegra.png" 
+                    alt="Planta Lengua de Suegra con largas hojas verticales y carnosas de color verde oscuro con bordes amarillos." 
+                    class="card-img" 
+                    width="474" 
+                    height="632" 
+                    decoding="async"
+                  >
+                </picture>
+              </div>
+
+              <div class="card-body">
+                <div class="card-header-info">
+                  <h3 id="plant-name-lengua" class="card-title">Lengua de Suegra</h3>
+                  <p class="card-scientific-name">Sansevieria trifasciata</p>
+                </div>
+
+                <p class="card-description">
+                  Especie excepcionalmente duradera, capaz de prosperar en condiciones de poca luz y riegos muy espaciados. Emite oxígeno durante la noche.
+                </p>
+
+                <ul class="care-list" aria-label="Cuidados esenciales de Lengua de Suegra">
+                  <li class="care-item">
+                    <span class="care-icon" aria-hidden="true">🌤️</span>
+                    <span class="care-text">Adaptable a baja o media luz</span>
+                  </li>
+                  <li class="care-item">
+                    <span class="care-icon" aria-hidden="true">💧</span>
+                    <span class="care-text">Riego escaso (cada 2 a 3 semanas)</span>
+                  </li>
+                </ul>
+
+                <div class="card-actions">
+                  <a 
+                    href="info/lenguaDeSuegra.pdf" 
+                    download="lenguaDeSuegra.pdf" 
+                    class="btn-download" 
+                    aria-label="Descargar ficha técnica de Lengua de Suegra en archivo PDF (14 KB)"
+                  >
+                    <span class="download-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" focusable="false">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                      </svg>
+                    </span>
+                    <span class="download-label">Descargar Ficha Técnica</span>
+                    <span class="download-meta" aria-hidden="true">PDF (14 KB)</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- TARJETA 3: MONSTERA -->
+            <article class="plant-card" aria-labelledby="plant-name-monstera">
+              <div class="card-image-wrapper">
+                <span class="card-category-tag tag-interior">Interior</span>
+                <picture>
+                  <source srcset="imagenes/monstera.jpg" type="image/jpeg">
+                  <img 
+                    src="imagenes/monstera.png" 
+                    alt="Planta Monstera con grandes hojas tropicales de color verde intenso provistas de hendiduras naturales." 
+                    class="card-img" 
+                    width="474" 
+                    height="319" 
+                    decoding="async"
+                  >
+                </picture>
+              </div>
+
+              <div class="card-body">
+                <div class="card-header-info">
+                  <h3 id="plant-name-monstera" class="card-title">Monstera Deliciosa</h3>
+                  <p class="card-scientific-name">Monstera deliciosa (Costilla de Adán)</p>
+                </div>
+
+                <p class="card-description">
+                  Icónica planta tropical de porte escultural con llamativas hojas fenestradas. Aporta frescura y exuberancia a cualquier ambiente luminoso.
+                </p>
+
+                <ul class="care-list" aria-label="Cuidados esenciales de Monstera">
+                  <li class="care-item">
+                    <span class="care-icon" aria-hidden="true">☀️</span>
+                    <span class="care-text">Luz media o tamizada (sin sol directo)</span>
+                  </li>
+                  <li class="care-item">
+                    <span class="care-icon" aria-hidden="true">💧</span>
+                    <span class="care-text">Riego moderado y humedad ambiental</span>
+                  </li>
+                </ul>
+
+                <div class="card-actions">
+                  <a 
+                    href="info/monstera.pdf" 
+                    download="monstera.pdf" 
+                    class="btn-download" 
+                    aria-label="Descargar ficha técnica de Monstera Deliciosa en archivo PDF (13 KB)"
+                  >
+                    <span class="download-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" focusable="false">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                      </svg>
+                    </span>
+                    <span class="download-label">Descargar Ficha Técnica</span>
+                    <span class="download-meta" aria-hidden="true">PDF (13 KB)</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             CATEGORÍA: PLANTAS DE EXTERIOR (3 plantas)
+             ========================================== -->
+        <section id="seccion-exterior" class="plant-category-section section-exterior" aria-labelledby="heading-exterior">
+          <header class="section-intro">
+            <div class="section-intro-badge">
+              <span aria-hidden="true">☀️</span> Categoría activa: Exterior
+            </div>
+            <h2 id="heading-exterior" class="section-title">Plantas de Exterior</h2>
+            <p class="section-desc">Especies florales y aromáticas resistentes a la intemperie, ideales para embellecer balcones, terrazas y jardines al aire libre.</p>
+          </header>
+
+          <div class="cards-grid">
+            <!-- TARJETA 4: LAVANDA -->
+            <article class="plant-card" aria-labelledby="plant-name-lavanda">
+              <div class="card-image-wrapper">
+                <span class="card-category-tag tag-exterior">Exterior</span>
+                <picture>
+                  <source srcset="imagenes/lavanda.jpg" type="image/jpeg">
+                  <img 
+                    src="imagenes/lavanda.png" 
+                    alt="Planta de lavanda florecida en exterior con espigas de flores color lila violáceo y hojas grisáceas aromáticas." 
+                    class="card-img" 
+                    width="474" 
+                    height="355" 
+                    decoding="async"
+                  >
+                </picture>
+              </div>
+
+              <div class="card-body">
+                <div class="card-header-info">
+                  <h3 id="plant-name-lavanda" class="card-title">Lavanda</h3>
+                  <p class="card-scientific-name">Lavandula angustifolia</p>
+                </div>
+
+                <p class="card-description">
+                  Subarbusto aromático perenne de origen mediterráneo. Famosa por su fragancia calmante, flores violetas y su gran atractivo para polinizadores.
+                </p>
+
+                <ul class="care-list" aria-label="Cuidados esenciales de Lavanda">
+                  <li class="care-item">
+                    <span class="care-icon" aria-hidden="true">☀️</span>
+                    <span class="care-text">Pleno sol directo (mínimo 6 horas)</span>
+                  </li>
+                  <li class="care-item">
+                    <span class="care-icon" aria-hidden="true">💧</span>
+                    <span class="care-text">Riego bajo y drenaje excelente</span>
+                  </li>
+                </ul>
+
+                <div class="card-actions">
+                  <a 
+                    href="info/lavanda.pdf" 
+                    download="lavanda.pdf" 
+                    class="btn-download" 
+                    aria-label="Descargar ficha técnica de Lavanda en archivo PDF (13 KB)"
+                  >
+                    <span class="download-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" focusable="false">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                      </svg>
+                    </span>
+                    <span class="download-label">Descargar Ficha Técnica</span>
+                    <span class="download-meta" aria-hidden="true">PDF (13 KB)</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- TARJETA 5: GERANIO -->
+            <article class="plant-card" aria-labelledby="plant-name-geranio">
+              <div class="card-image-wrapper">
+                <span class="card-category-tag tag-exterior">Exterior</span>
+                <picture>
+                  <source srcset="imagenes/geranio.jpg" type="image/jpeg">
+                  <img 
+                    src="imagenes/geranio.png" 
+                    alt="Planta de geranio con densos racimos de flores rojas vivas y hojas redondeadas aterciopeladas." 
+                    class="card-img" 
+                    width="474" 
+                    height="355" 
+                    decoding="async"
+                  >
+                </picture>
+              </div>
+
+              <div class="card-body">
+                <div class="card-header-info">
+                  <h3 id="plant-name-geranio" class="card-title">Geranio</h3>
+                  <p class="card-scientific-name">Pelargonium hortorum</p>
+                </div>
+
+                <p class="card-description">
+                  La reina tradicional de balcones y ventanales. Destaca por su floración continua y profusa en tonos rojos vivos, tolerando el calor estival con vigor.
+                </p>
+
+                <ul class="care-list" aria-label="Cuidados esenciales de Geranio">
+                  <li class="care-item">
+                    <span class="care-icon" aria-hidden="true">☀️</span>
+                    <span class="care-text">Sol directo o semisombra luminosa</span>
+                  </li>
+                  <li class="care-item">
+                    <span class="care-icon" aria-hidden="true">💧</span>
+                    <span class="care-text">Riego regular sin encharcar hojas</span>
+                  </li>
+                </ul>
+
+                <div class="card-actions">
+                  <a 
+                    href="info/geranio.pdf" 
+                    download="geranio.pdf" 
+                    class="btn-download" 
+                    aria-label="Descargar ficha técnica de Geranio en archivo PDF (14 KB)"
+                  >
+                    <span class="download-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" focusable="false">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                      </svg>
+                    </span>
+                    <span class="download-label">Descargar Ficha Técnica</span>
+                    <span class="download-meta" aria-hidden="true">PDF (14 KB)</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- TARJETA 6: HORTENSIA -->
+            <article class="plant-card" aria-labelledby="plant-name-hortensia">
+              <div class="card-image-wrapper">
+                <span class="card-category-tag tag-exterior">Exterior</span>
+                <picture>
+                  <source srcset="imagenes/hortensia.jpg" type="image/jpeg">
+                  <img 
+                    src="imagenes/hortensia.png" 
+                    alt="Arbusto de hortensia con grandes flores globosas en tonos celestes, rosáceos y lilas entre hojas verdes." 
+                    class="card-img" 
+                    width="474" 
+                    height="316" 
+                    decoding="async"
+                  >
+                </picture>
+              </div>
+
+              <div class="card-body">
+                <div class="card-header-info">
+                  <h3 id="plant-name-hortensia" class="card-title">Hortensia</h3>
+                  <p class="card-scientific-name">Hydrangea macrophylla</p>
+                </div>
+
+                <p class="card-description">
+                  Arbusto ornamental de gran presencia, célebre por sus voluminosas inflorescencias en tonos pastel cuyo color varía según la acidez del suelo.
+                </p>
+
+                <ul class="care-list" aria-label="Cuidados esenciales de Hortensia">
+                  <li class="care-item">
+                    <span class="care-icon" aria-hidden="true">🌤️</span>
+                    <span class="care-text">Semisombra (sol de mañana suave)</span>
+                  </li>
+                  <li class="care-item">
+                    <span class="care-icon" aria-hidden="true">💧</span>
+                    <span class="care-text">Riego frecuente manteniendo suelo húmedo</span>
+                  </li>
+                </ul>
+
+                <div class="card-actions">
+                  <a 
+                    href="info/hortensia.pdf" 
+                    download="hortensia.pdf" 
+                    class="btn-download" 
+                    aria-label="Descargar ficha técnica de Hortensia en archivo PDF (13 KB)"
+                  >
+                    <span class="download-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" focusable="false">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                      </svg>
+                    </span>
+                    <span class="download-label">Descargar Ficha Técnica</span>
+                    <span class="download-meta" aria-hidden="true">PDF (13 KB)</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Pie de página accesible -->
+    <footer class="site-footer">
+      <div class="container footer-container">
+        <div class="footer-info">
+          <p class="footer-text">
+            <strong>Catálogo Botánico Accesible</strong> — Proyecto desarrollado por <strong>Mateo Andrés D'Altroy</strong> (Legajo 24636/4).
+          </p>
+          <p class="footer-subtext">
+            Desarrollado para la materia Proyecto de Software. Cumple estándares WCAG 2.1 AA/AAA, 100% estático en HTML5 y CSS3 puro sin JavaScript.
+          </p>
+        </div>
+        <div class="footer-meta">
+          <a href="mailto:mateodaltroy@gmail.com" class="footer-contact-link">mateodaltroy@gmail.com</a>
+          <span class="footer-separator" aria-hidden="true">•</span>
+          <a href="tel:+5491145678901" class="footer-contact-link">+54&nbsp;9&nbsp;11&nbsp;4567&#8209;8901</a>
+          <span class="footer-separator" aria-hidden="true">•</span>
+          <span class="footer-badge-item">Legajo: 24636/4</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
